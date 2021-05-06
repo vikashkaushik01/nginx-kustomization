@@ -98,7 +98,7 @@ spec:
 
         - name: DJANGO_ALLOWED_HOSTS
 
-          value: go-ks.dev.nibr.nirmata.net,go.global.nibr.novartis.net,go.nibr.novartis.net,go.na.novartis.net,go.jp.novartis.net,go.eu.novartis.net,go.ap.novartis.net,go.la.novartis.net
+          value: go-ks.dev.nibr.novartis.net,go.global.nibr.novartis.net,go.nibr.novartis.net,go.na.novartis.net,go.jp.novartis.net,go.eu.novartis.net,go.ap.novartis.net,go.la.novartis.net
 
         - name: DJANGO_DEBUG
 
@@ -118,7 +118,7 @@ spec:
 
         - name: GO_DB_USER
 
-          value: go_user.nirmata.com
+          value: go_user
 
         - name: GO_DB_HOST
 
@@ -136,7 +136,7 @@ spec:
 
               key: GUNICORN_WORKERS
 
-              name: go-app-configmap-dev.nirmata.com
+              name: go-app-configmap-dev
 
         - name: GUNICORN_THREADS
 
