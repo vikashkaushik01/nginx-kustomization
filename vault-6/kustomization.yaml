@@ -6,6 +6,6 @@ patchesStrategicMerge:
     kind: Deployment
     metadata:
     annotations: {}
-    name: "nginx-deployment"
+    name: "nginx-1"
     labels:
       nirmata.io/component: "nginx-deployment"
