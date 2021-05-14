@@ -1,0 +1,11 @@
+resources:
+- ../.kube.yaml
+patchesStrategicMerge:
+- |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+    annotations: {}
+    name: "nginx-deployment"
+    labels:
+      nirmata.io/component: "nginx-deployment"
