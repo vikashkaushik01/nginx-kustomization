@@ -3,11 +3,11 @@ clusterPatches:
      kind: Cluster
      labelSelector:
          nirmata.io/kubernetescluster.mode: "discovered"
-         nirmata.io/cluster-name: "cluster-001"
+         nirmata.io/cluster-name: "bob-cluster"
   kustomizePatch: ./bob-cluster/
 - target:
      kind: Cluster
      labelSelector:
          nirmata.io/kubernetescluster.mode: "discovered"
-         nirmata.io/cluster-name: "cluster-002"
+         nirmata.io/cluster-name: "vault-6"
   kustomizePatch: ./vault-6/
