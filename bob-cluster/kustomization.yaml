@@ -8,4 +8,4 @@ patchesStrategicMerge:
     annotations: {}
     name: "nginx-2"
     labels:
-      nirmata.io/component: "nginx-deployment"
+      nirmata.io/component: "nginx-2"
