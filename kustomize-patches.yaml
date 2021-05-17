@@ -9,5 +9,5 @@ clusterPatches:
      kind: Cluster
      labelSelector:
          nirmata.io/kubernetescluster.mode: "discovered"
-         nirmata.io/cluster-name: "vault-6"
-  kustomizePatch: ./vault-6/
+         nirmata.io/cluster-name: "nirmata-scale"
+  kustomizePatch: ./nirmata-scale/
