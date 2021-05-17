@@ -2,8 +2,13 @@
 kind: "Deployment"
 apiVersion: "apps/v1"
 metadata:
-  annotations: {}
-  name: "nginx-deployment"
+  name: "nginx"
+  annotations:
+    sidecar.istio.io/inject: "false"
+    vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/role: "nginx"
+    vault.hashicorp.com/agent-inject-secret-dd: "nytm/nirmata/system-credentials/secret/nginx"
+    vault.hashicorp.com/agent-inject-template-dd: | {{ with secret "nytm/nirmata/system-credentials/secret/nginx" -}}
   labels:
     nirmata.io/component: "nginx-deployment"
 spec:
