@@ -5,7 +5,11 @@ patchesStrategicMerge:
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-    annotations: {}
-    name: "nginx-1"
-    labels:
-      nirmata.io/component: "nginx-1"
+      annotations: {}
+      name: "nginx"
+      annotations:
+        sidecar.istio.io/inject: "false"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "nginx"
+        vault.hashicorp.com/agent-inject-secret-dd: "nytm/nirmata/system-credentials/secret/nginx-vault-6"
+        vault.hashicorp.com/agent-inject-template-dd: | {{ with secret "nytm/nirmata/system-credentials/secret/nginx-vault-6" -}}
