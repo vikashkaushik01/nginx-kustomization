@@ -2,12 +2,12 @@ clusterPatches:
 - target:
      kind: Cluster
      labelSelector:
-         nirmata.io/kubernetescluster.mode: "discovered"
-         nirmata.io/cluster-name: "bob-cluster"
-  kustomizePatch: ./bob-cluster/
+         nirmata.io/kubernetescluster.mode: "managed"
+         nirmata.io/clusterspec.cloud: "vSphere"
+         nirmata.io/clusterspec.version: "v1.18.9-eks"
+  kustomizePatch: ./cluster-001/
 - target:
      kind: Cluster
      labelSelector:
          nirmata.io/kubernetescluster.mode: "discovered"
-         nirmata.io/cluster-name: "nirmata-scale"
-  kustomizePatch: ./nirmata-scale/
+  kustomizePatch: ./cluster-002/
