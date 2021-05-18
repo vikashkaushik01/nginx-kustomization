@@ -1,43 +1,41 @@
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: nginx
 ---
-kind: "Deployment"
-apiVersion: "apps/v1"
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: "nginx"
-  annotations:
-    sidecar.istio.io/inject: "false"
-    vault.hashicorp.com/agent-inject: "true"
-    vault.hashicorp.com/role: "nginx"
-    vault.hashicorp.com/agent-inject-secret-dd: "nytm/nirmata/system-credentials/secret/nginx"
-    vault.hashicorp.com/agent-inject-template-dd: | {{ with secret "nytm/nirmata/system-credentials/secret/nginx" -}}
-  labels:
-    nirmata.io/component: "nginx-deployment"
+  name: nginx
+  namespace: nginx
 spec:
-  replicas: 1
-  revisionHistoryLimit: 5
+  minReadySeconds: 0
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 15%
+    type: RollingUpdate
   selector:
     matchLabels:
-      app: "nginx"
-      nirmata.io/component: "nginx-deployment"
-    matchExpressions: []
-  strategy:
-    type: "RollingUpdate"
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      app: nginx
   template:
     metadata:
-      annotations: {}
       labels:
-        app: "nginx"
-        nirmata.io/component: "nginx-deployment"
+        app: nginx
+        nirmata.io/component: nginx-deployment
+      name: nginx
+      annotations:
+        sidecar.istio.io/inject: "false"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "nginx"
+        vault.hashicorp.com/agent-inject-secret-dd: "nytm/nirmata/system-credentials/secret/nginx"
+        vault.hashicorp.com/agent-inject-template-dd: |
+          {{ with secret "nytm/nirmata/system-credentials/secret/nginx" -}}
+            export DD_API_KEY="{{ .Data.data.api_key }}"
+          {{- end }}
     spec:
-      terminationGracePeriodSeconds: 30
-      nodeSelector: {}
       containers:
-      - name: "nginx"
-        image: "nginx:1.7.9"
-        command: []
-        args: []
+      - image: nginx:1.7.9
+        name: nginx
         ports:
         - containerPort: 80
           protocol: "TCP"
