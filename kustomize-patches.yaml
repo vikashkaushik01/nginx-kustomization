@@ -2,12 +2,5 @@ clusterPatches:
 - target:
      kind: Cluster
      labelSelector:
-         nirmata.io/kubernetescluster.mode: "managed"
-         nirmata.io/clusterspec.cloud: "vSphere"
-         nirmata.io/clusterspec.version: "v1.18.9-eks"
-  kustomizePatch: ./cluster-001/
-- target:
-     kind: Cluster
-     labelSelector:
          nirmata.io/kubernetescluster.mode: "discovered"
-  kustomizePatch: ./cluster-002/
+  kustomizePatch: ./vikash-test/
